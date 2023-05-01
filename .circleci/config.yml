@@ -5,22 +5,22 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
+  build:
+    description: Build dotnet services
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
+    - image: mcr.microsoft.com/dotnet/sdk:7.0
     steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+    - checkout
+    - run:
+      name: Build core service
+      command: dotnet.exe build --configuration Release src/StellarEmpire.Core.Service/
+    - run:
+      name: Build game service
+      command: dotnet.exe build --configuration Release src/StellerEmpire.Game.Service/
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  stellar-empire-workflow:
     jobs:
-      - say-hello
+    - build
