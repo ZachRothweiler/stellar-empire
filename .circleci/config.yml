@@ -12,6 +12,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install unzip
+          command: apt update && apt install unzip
+      - run:
           name: Build core service
           command: dotnet build --configuration Release src/StellarEmpire.Core.Service/
       - run:
