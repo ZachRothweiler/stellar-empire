@@ -1,4 +1,4 @@
-namespace StellarEmpire.Core.Api;
+namespace StellarEmpire.Core.Service;
 
 public class WeatherForecast
 {

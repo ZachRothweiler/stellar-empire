@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace StellarEmpire.Core.Api.Controllers;
+namespace StellarEmpire.Core.Service.Controllers;
 
 [ApiController]
 [Route("[controller]")]
