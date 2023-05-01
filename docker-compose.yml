@@ -1,4 +1,29 @@
 # Use postgres/example user/password credentials
 version: '3.1'
 
+volumes:
+  core_pgdata:
+  game_pgdata:
+
 services:
+  db_global:
+    image: postgres
+    restart: always
+    ports: 
+    - 5432:5432
+    env_file:
+    - .env
+    volumes:
+    - ./sql/core/:/docker-entrypoint-initdb.d/
+    - core_pgdata:/var/lib/postgresql/data
+
+  db_games:
+    image: postgres
+    restart: always
+    ports:
+    - 5433:5432
+    env_file:
+    - .env
+    volumes:
+    - ./sql/game/:/docker-entrypoint-initdb.d/
+    - game_pgdata:/var/lib/postgresql/data
