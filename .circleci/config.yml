@@ -13,10 +13,10 @@ jobs:
       - checkout
       - run:
           name: Build core service
-          command: dotnet build --configuration Release src/StellarEmpire.Core.Service/StellarEmpire.Core.Service.csproj
+          command: dotnet build --configuration Release src/StellarEmpire.Core.Service/
       - run:
           name: Build game service
-          command: dotnet build --configuration Release src/StellerEmpire.Game.Service/StellarEmpire.Game.Service.csproj
+          command: dotnet build --configuration Release src/StellarEmpire.Game.Service/
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
