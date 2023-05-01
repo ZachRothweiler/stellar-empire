@@ -12,15 +12,23 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install unzip
+          command: apt update && apt install unzip
+      - run:
           name: Build core service
           command: dotnet build --configuration Release src/StellarEmpire.Core.Service/
       - run:
           name: Build game service
           command: dotnet build --configuration Release src/StellarEmpire.Game.Service/
+      - sonarcloud/scan
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.3
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   stellar-empire-workflow:
     jobs:
-      - build
+      - build:
+          context: SonarCloud
